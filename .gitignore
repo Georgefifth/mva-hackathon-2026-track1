@@ -1,0 +1,17 @@
+# 受保护数据 — 不得推送到 GitHub
+data/
+*.vcf.gz
+*.vcf.gz.tbi
+*.fastq.gz
+*.bam
+*.cram
+Challenge_Clinical_Phenotype_1.docx
+
+# 中间文件（含变异坐标的衍生数据）
+analysis/mva_candidates.tsv
+analysis/mva_annotated.tsv
+
+# Python
+__pycache__/
+*.pyc
+.env
