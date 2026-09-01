@@ -174,6 +174,20 @@ methods 报告里必须记录一行，例如：
 
 ## 8. 已确认事项（2026-09-01）
 
+### 提交准备状态
+- [x] 预测 CSV: `submission/georgefifth_bub1b-compound-het-v1.csv`（3 行）
+- [x] Methods 报告: `submission/georgefifth_track1_report.md`
+- [x] GitHub repo: https://github.com/Georgefifth/mva-hackathon-2026-track1（私有，结束后公开）
+- [x] LLM 使用声明: 已写入 methods 报告第 7 节
+- [x] 受保护数据已从 git 历史清除（VCF/docx/TSV）
+
+### Devin/Cognition 条款核实结果（2026-09-01）
+- Cognition 默认可能用数据训练模型；付费计划可 opt-out 并启用 Zero Data Retention
+- **采取的合规措施**：原始基因组数据（VCF/FASTQ/基因型）从未进入 Devin 对话
+- 只处理了衍生发现（基因名、HPO、注释结果、文献）和代码
+- Ensembl VEP REST API 作为 Processor 使用（只发坐标，不发样本信息）
+- methods 报告第 7 节如实记录了以上信息
+
 - [x] HF 账号已获批数据集访问权限。
 - [x] 本地资源：用户**有自己的服务器**，能跑 pipeline。
       ⚠️ **服务器上有其他项目——操作时必须小心，不得扰乱既有项目。**
