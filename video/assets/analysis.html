@@ -1,0 +1,67 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { margin:0; box-sizing:border-box; }
+  :root{ --accent:#d13415; --paper:#faf9f4; --ink:#1c1a16; --mut:#6b6257; --line:#d8d2c4; }
+  body { width:1920px; height:1080px; padding:80px 100px;
+         font-family:"DejaVu Sans",system-ui,sans-serif; color:var(--ink);
+         background: linear-gradient(180deg,#faf9f4,#f1eee4); }
+  .k { color:var(--accent); font-size:22px; letter-spacing:.3em; text-transform:uppercase; font-weight:700; }
+  h1 { font-family:"DejaVu Serif",Georgia,serif; font-size:48px; margin:20px 0 8px; }
+  .sub { color:var(--mut); font-size:24px; margin-bottom:36px; }
+  .grid { display:flex; gap:40px; }
+  .left { flex:1.35; }
+  .right { flex:1; }
+  .check { background:#fff; border:1.5px solid var(--line); border-radius:8px;
+           padding:22px 28px; margin-bottom:18px; display:flex; align-items:center; gap:22px; }
+  .check .ok { width:44px; height:44px; border-radius:50%; background:var(--accent); color:#fff;
+               font-size:26px; font-weight:700; display:grid; place-items:center; flex:none; }
+  .check .t { font-size:26px; font-weight:700; }
+  .check .d { font-size:21px; color:var(--mut); margin-top:4px; }
+  .scorebox { background:#fff; border:2.5px solid var(--accent); border-radius:12px;
+              padding:44px; text-align:center; }
+  .scorebox .score { font-family:"DejaVu Serif",Georgia,serif; font-size:130px;
+                     color:var(--accent); font-weight:700; line-height:1; }
+  .scorebox .of { font-size:30px; color:var(--mut); margin-top:8px; }
+  .scorebox .verdict { font-size:30px; font-weight:700; margin-top:26px; }
+  .codon { display:inline-block; font-family:"DejaVu Sans Mono",monospace; font-size:24px;
+           background:var(--ink); color:#f5f2ea; padding:6px 16px; border-radius:6px;
+           margin:2px 4px; }
+  .codon b { color:var(--accent); }
+  .mono { font-family:"DejaVu Sans Mono",monospace; font-size:20px; color:var(--mut); }
+</style></head><body>
+  <div class="k">Readthrough amenability analysis</div>
+  <h1>p.Leu737* — chr15:40,209,701 T&gt;G</h1>
+  <div class="sub">pipeline/04_readthrough_analysis.py · BUB1B · ENST00000287598</div>
+
+  <div class="grid">
+    <div class="left">
+      <div class="check" id="c-nmd">
+        <div class="ok">✓</div>
+        <div><div class="t">NMD-eligible</div>
+        <div class="d">PTC in exon 17 of 23 — 10.9 kb before the last exon junction; the mutant mRNA will be destroyed</div></div>
+      </div>
+      <div class="check" id="c-codon">
+        <div class="ok">✓</div>
+        <div><div class="t">UGA stop codon</div>
+        <div class="d"><span class="codon">T<b>T</b>A → T<b>G</b>A</span> &nbsp;the most readthrough-responsive codon class (inserts Trp / Arg / Cys)</div></div>
+      </div>
+      <div class="check" id="c-context">
+        <div class="ok">✓</div>
+        <div><div class="t">Favorable sequence context</div>
+        <div class="d">+4 nucleotide = A — known to raise readthrough efficiency</div></div>
+      </div>
+      <div class="check" id="c-salvage">
+        <div class="ok">✓</div>
+        <div><div class="t">Salvageable truncation</div>
+        <div class="d">737X retains the N-terminal APC/C-inhibitory domain — stable when expressed (Suijkerbuijk 2010)</div></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="scorebox" id="score">
+        <div class="score">7<span class="of">/7</span></div>
+        <div class="verdict">Strong readthrough candidate</div>
+        <div class="mono" style="margin-top:24px">generalizes to any nonsense variant<br>in any gene</div>
+      </div>
+    </div>
+  </div>
+</body></html>

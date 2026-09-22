@@ -15,3 +15,5 @@ analysis/mva_annotated.tsv
 __pycache__/
 *.pyc
 .env
+video/track2_pitch.work/
+video/*.mp4

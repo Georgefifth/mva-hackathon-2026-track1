@@ -1,0 +1,187 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { margin:0; box-sizing:border-box; }
+  :root{
+    --accent:#d13415; --paper:#faf9f4; --paper2:#f1eee4;
+    --ink:#1c1a16; --mut:#6b6257; --line:#d8d2c4;
+  }
+  body { font-family:"DejaVu Sans",system-ui,sans-serif; color:var(--ink); }
+  .slide { width:1920px; height:1080px; padding:80px 110px 220px; position:relative;
+           background:
+             radial-gradient(1000px 600px at 85% -10%, rgba(209,52,21,.05), transparent 60%),
+             linear-gradient(180deg, var(--paper), var(--paper2));
+           overflow:hidden;
+           display:flex; flex-direction:column; }
+  .slide > .body { flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .k { color:var(--accent); font-size:26px; letter-spacing:.32em; text-transform:uppercase;
+       font-weight:700; }
+  .rule { width:120px; height:5px; background:var(--accent); margin:24px 0 30px; }
+  h1 { font-family:"DejaVu Serif",Georgia,serif; font-size:66px; line-height:1.14;
+       font-weight:700; letter-spacing:-1px; max-width:1560px; }
+  h1 em { color:var(--accent); font-style:normal; }
+  .cols { display:flex; gap:64px; margin-top:56px; }
+  .col { flex:1; }
+  .big { font-family:"DejaVu Serif",Georgia,serif; font-size:44px; line-height:1.25; }
+  .li { font-size:31px; line-height:1.5; margin:20px 0; color:#2c2822; }
+  .li b { color:var(--ink); }
+  .tag { display:inline-block; border:1.5px solid var(--accent); color:var(--accent);
+         border-radius:999px; padding:4px 18px; font-size:21px; font-weight:700;
+         letter-spacing:.08em; margin-right:10px; }
+  .num { font-family:"DejaVu Serif",Georgia,serif; font-size:150px; color:var(--accent);
+         font-weight:700; line-height:1; }
+  .foot { position:absolute; left:110px; bottom:196px; font-size:20px; color:var(--mut);
+          letter-spacing:.18em; text-transform:uppercase; }
+
+  /* variant pair diagram */
+  .pair { display:flex; gap:44px; margin-top:60px; }
+  .allele { flex:1; background:#fff; border:1.5px solid var(--line); border-radius:8px;
+            padding:44px 48px; box-shadow:0 2px 0 rgba(0,0,0,.04); }
+  .allele .lab { font-size:22px; letter-spacing:.2em; text-transform:uppercase;
+                 color:var(--mut); font-weight:700; }
+  .allele .chg { font-family:"DejaVu Serif",Georgia,serif; font-size:62px; margin:18px 0 8px;
+                 font-weight:700; }
+  .allele .chg span { color:var(--accent); }
+  .allele .meta { font-size:27px; color:#3a352d; line-height:1.5; }
+  .allele .meta b { color:var(--accent); }
+
+  /* mechanism chain */
+  .chain { display:flex; align-items:stretch; gap:0; margin-top:70px; }
+  .node { flex:1; background:#fff; border:1.5px solid var(--line); border-radius:8px;
+          padding:38px 26px; text-align:center; position:relative; }
+  .node .t { font-family:"DejaVu Serif",Georgia,serif; font-size:32px; font-weight:700;
+             line-height:1.2; }
+  .node .d { font-size:22px; color:var(--mut); margin-top:12px; line-height:1.45; }
+  .arrow { align-self:center; font-size:48px; color:var(--accent); padding:0 18px;
+           font-weight:700; }
+  .lever { position:absolute; top:-28px; left:50%; transform:translateX(-50%);
+           background:var(--accent); color:#fff; font-size:21px; font-weight:700;
+           padding:7px 20px; border-radius:999px; white-space:nowrap;
+           letter-spacing:.06em; }
+  .lever-row { margin-top:84px; }
+
+  /* drug table */
+  table { width:100%; border-collapse:collapse; margin-top:52px; background:#fff; }
+  th { text-align:left; font-size:22px; letter-spacing:.18em; text-transform:uppercase;
+       color:var(--mut); padding:18px 24px; border-bottom:2px solid var(--accent); }
+  td { font-size:29px; padding:26px 24px; border-bottom:1px solid var(--line);
+       line-height:1.4; vertical-align:top; }
+  td b { font-size:30px; }
+  td:first-child { font-family:"DejaVu Serif",Georgia,serif; font-weight:700; width:360px; }
+  .pill { display:inline-block; background:var(--accent); color:#fff; font-size:18px;
+          padding:3px 14px; border-radius:999px; font-weight:700; vertical-align:middle;
+          margin-left:10px; }
+</style></head><body>
+
+<!-- S2: the patient / problem -->
+<div class="slide" id="s2">
+  <div class="k">The patient</div>
+  <div class="rule"></div>
+  <div class="body">
+    <h1>A real child. Fewer than <em>50 cases</em> ever reported. No approved treatment.</h1>
+    <div class="cols">
+      <div class="col">
+        <div class="li"><b>Mosaic variegated aneuploidy</b> — a chromosome-segregation disorder</div>
+        <div class="li">Premature at 32 weeks · severe growth restriction · failure to thrive</div>
+        <div class="li">Already fighting <b>rhabdomyosarcoma</b></div>
+      </div>
+      <div class="col">
+        <div class="li">Care today means managing symptoms — nothing addresses the cause</div>
+        <div class="li">Parents' recurrent miscarriages → a recessive carrier signature</div>
+        <div class="li">Our task: <b>repurpose an existing drug</b> against the mechanism</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">MVA Hackathon 2026 · Track 2 · Georgefifth</div>
+</div>
+
+<!-- S3: the finding -->
+<div class="slide" id="s3">
+  <div class="k">The variant — Track 1 finding</div>
+  <div class="rule"></div>
+  <div class="body">
+    <h1>Compound-heterozygous <em>BUB1B</em> — one null allele, one unstable allele</h1>
+    <div class="pair">
+      <div class="allele">
+        <div class="lab">Allele 1 · chr15:40,209,701 T&gt;G</div>
+        <div class="chg">p.Leu737<span>*</span></div>
+        <div class="meta"><b>stop-gained</b> · UGA premature termination codon<br>
+        ClinVar: <b>pathogenic</b> (rs759242053)<br>NMD-eligible transcript</div>
+      </div>
+      <div class="allele">
+        <div class="lab">Allele 2 · chr15:40,220,612 T&gt;G</div>
+        <div class="chg">p.Asn1002<span>Lys</span></div>
+        <div class="meta"><b>missense</b> · pseudokinase C-lobe<br>
+        Novel — absent from gnomAD<br>SIFT 0.01 · PolyPhen 0.997</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">MANE Select ENST00000287598 · GRCh38</div>
+</div>
+
+<!-- S4: mechanism chain -->
+<div class="slide" id="s4">
+  <div class="k">The mechanism — and where drugs can act</div>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="chain">
+      <div class="node"><div class="t">p.Leu737*</div>
+        <div class="d">premature stop codon<br>(UGA)</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="lever">amlexanox inhibits this</div>
+        <div class="t">NMD destroys mRNA</div>
+        <div class="d">verified: exon 17/23,<br>&gt;10 kb before last junction</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="lever">ataluren reads through</div>
+        <div class="t">No BUBR1 protein</div>
+        <div class="d">truncated product is<br>stable &amp; retains N-term function</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="t">Checkpoint fails</div>
+        <div class="d">aneuploidy · cancer risk<br>growth failure</div></div>
+    </div>
+    <div class="li" style="margin-top:64px; font-size:33px">Two independent rescue routes: <b>read through the stop</b> — or <b>save the mRNA</b> and let the stable, partly-functional 737X protein accumulate.</div>
+  </div>
+  <div class="foot">Mechanism analysis · pipeline/04_readthrough_analysis.py</div>
+</div>
+
+<!-- S5: drugs -->
+<div class="slide" id="s5">
+  <div class="k">The candidates</div>
+  <div class="rule"></div>
+  <div class="body">
+    <h1>Two approved drugs, two different bottlenecks</h1>
+    <table>
+      <tr><th>Drug</th><th>Mechanism</th><th>Status</th></tr>
+      <tr><td>Ataluren<span class="pill">primary</span></td>
+          <td>Inhibits release-factor termination → ribosome <b>reads through</b> UGA, restoring full-length BUBR1</td>
+          <td>EMA-approved for nmDMD · pediatric safety record</td></tr>
+      <tr><td>Amlexanox<span class="pill">secondary</span></td>
+          <td><b>Inhibits NMD</b> → mutant mRNA survives → stable 737X protein accumulates</td>
+          <td>Decades of safe use · withdrawn commercially, not for safety</td></tr>
+      <tr><td>Combination</td>
+          <td>Orthogonal mechanisms — more substrate × more readthrough per transcript</td>
+          <td>Mechanistic hypothesis for cell assays</td></tr>
+    </table>
+  </div>
+  <div class="foot">Roy 2016 · Ko 2025 · Atanasova 2017</div>
+</div>
+
+<!-- S6: threshold + honesty -->
+<div class="slide" id="s6">
+  <div class="k">Why partial rescue could suffice</div>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols" style="margin-top:0">
+      <div class="col" style="flex:0.8">
+        <div class="num">~50%</div>
+        <div class="li" style="margin-top:20px">of normal BUBR1 separates healthy carriers from disease.<br><b>We don't need perfect rescue.</b></div>
+      </div>
+      <div class="col">
+        <div class="li"><b>Honest scope:</b> this slows <i>new</i> aneuploidy — it does not treat the existing tumor. It targets the recurrent-cancer risk that defines MVA's long-term threat.</div>
+        <div class="li"><b>Validation first:</b> patient fibroblasts → drug exposure → measure BUBR1 protein and checkpoint function. Small experiment, definitive answer.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Matsuura 2007 · dose-response threshold</div>
+</div>
+
+</body></html>
