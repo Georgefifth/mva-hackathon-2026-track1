@@ -144,7 +144,23 @@ The proband already has rhabdomyosarcoma. Our proposal must account for this:
 
 ---
 
-## 7. LLM and AI Tool Usage Declaration
+## 7. Methods Description — Official Template Answers
+
+**Method abstract (≤500 words).** Starting from our Track 1 finding — a BUB1B compound-heterozygous pair (p.Leu737* nonsense + p.Asn1002Lys missense) — we characterized each allele's loss mechanism computationally and mapped drug interventions onto the resulting pathway bottlenecks. Allele 1 creates a UGA premature termination codon that is verified NMD-eligible (exon 17/23, ~10.9 kb upstream of the last exon junction); published MVA data show such truncations are stable when expressed, so the defect is transcript destruction, not protein misfolding. Allele 2 sits in the pseudokinase C-lobe adjacent to known unstable variant L1012P, consistent with protein instability. We therefore propose ataluren (EMA-approved readthrough drug for nmDMD, established pediatric safety) as primary candidate, and amlexanox (dual NMD-inhibitor/readthrough agent, decades of safe use) as secondary — they attack different bottlenecks and may combine. The BUBR1 dose-threshold (>50% loss → disease; carriers healthy at ~50%) means partial rescue may suffice. **Strengths:** mechanism-verified at each step (exon structure, codon class, domain mapping); two independent rescue routes; approved drugs with pediatric data. **Limitations:** readthrough efficiency is context-dependent; 737X retains only partial function; no wet-lab validation yet; amlexanox lacks current commercial supply.
+
+**Approach in detail (variant → mechanism → medication).** (1) Verified NMD eligibility from the Ensembl transcript exon structure. (2) Determined the PTC class (UGA) and +4 sequence context — the strongest readthrough-responsive configuration. (3) Mapped the truncation point against UniProt domain annotations: 737X retains the N-terminal ~450 aa carrying APC/C-inhibitory and KNL1-binding function. (4) Reviewed published MVA BUB1B nonsense alleles — NMD-driven loss confirmed for 731X (6 residues from ours). (5) Matched mechanism to approved drugs via readthrough/NMD literature; screened out candidates whose mechanisms (aminoglycoside toxicity, termination-factor degradation, proteasome inhibition) are incompatible with chronic pediatric use or cancer predisposition.
+
+**Automated vs. manual identification.** Hybrid. Computational analysis (our `04_readthrough_analysis.py`) generated the amenability assessment; drug selection was manual literature curation guided by mechanism requirements (UGA-compatible readthrough, pediatric safety, no pro-proliferative risk).
+
+**Manual curation detail.** PubMed/PMC review of: ataluren mechanism and insertion specificity (Roy 2016; Ko 2025); BUBR1 truncation stability and NMD in MVA patients (Suijkerbuijk 2010); dose-threshold evidence (Matsuura 2007); amlexanox readthrough + NMD-inhibition evidence (Atanasova 2017; Fortuity Pharma rare-disease program); pseudokinase-domain instability literature.
+
+**Data sources.** Public only: Ensembl REST (VEP, sequence, transcript structure), UniProt (O60566 domains), ClinVar (variation 533901), dbSNP/gnomAD absence check, PubMed/PMC literature, DrugBank/label knowledge for ataluren and amlexanox regulatory status. No proprietary data.
+
+**Mechanism characterization.** Loss-of-function on both alleles, via two distinct mechanisms: Allele 1 → UGA PTC → NMD → absent BUBR1 (null). Allele 2 → pseudokinase-domain missense → protein instability (hypomorphic). Pathway: spindle assembly checkpoint — BUBR1 restrains APC/C-CDC20 via MCC assembly; loss → premature anaphase → mosaic aneuploidy → growth restriction, developmental delay, early cancer predisposition (rhabdomyosarcoma in this proband).
+
+**Time/effort estimate.** ~1 day: ~4 h literature review, ~3 h computational analysis + tooling, ~2 h report writing.
+
+## 8. LLM and AI Tool Usage Declaration
 
 | Tool | Provider | Plan/Tier | Data Handling |
 |---|---|---|---|
@@ -154,7 +170,7 @@ The proband already has rhabdomyosarcoma. Our proposal must account for this:
 
 All genomic analysis ran locally; external APIs received only public-database identifiers or variant coordinates (Processor-equivalent usage per hackathon Discussion #2 framework).
 
-## 8. Acknowledgement
+## 9. Acknowledgement
 
 This work was made possible through the Hackathon, organized by Sage Bionetworks in partnership with the MVA Society, Hugging Face, and BEACON, with prize sponsorship from AWS and Anthropic. We thank the child and family who generously contributed their data and story.
 
