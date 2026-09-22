@@ -188,6 +188,59 @@ methods 报告里必须记录一行，例如：
 - Ensembl VEP REST API 作为 Processor 使用（只发坐标，不发样本信息）
 - methods 报告第 7 节如实记录了以上信息
 
+---
+
+## 9. Track 2 — 药物再利用（进行中）
+
+### 9.1 目标与交付物
+
+基于 Track 1 找到的致病变异机制，提出**已批准药物**的再利用候选。
+
+| 交付物 | 状态 |
+|---|---|
+| 报告（PDF/MD，用官方 methods 模板） | 进行中 |
+| GitHub repo 补充 Track 2 分析 | 复用现有 repo |
+| 3 分钟 pitch 视频（YouTube/Vimeo） | **暂缓** — 用户自行决定 |
+
+- 评分：专家评委 — 科学严谨 35% / 潜在影响 25% / 创新 25% / 可扩展 15%
+- 提交次数：3 次，只评最新一次
+- 评审周期：~2-3 个月
+
+### 9.2 机制假设（来自 Track 1 结论）
+
+- **变异**：BUB1B compound-het — `chr15:40209701 T>G` p.Leu737*（stop_gained, ClinVar pathogenic）+ `chr15:40220612 T>G` p.Asn1002Lys（missense, SIFT deleterious / PolyPhen probably_damaging）
+- **机制链**：PTC（提前终止密码子）→ nonsense-mediated decay (NMD) → BUBR1 蛋白缺失 → 纺锤体组装检查点 (SAC) 缺陷 → 染色体错误分离 → 非整倍体
+- missense allele 可能产生部分功能蛋白（未证实）
+
+### 9.3 药物方向（待调研验证）
+
+| 方向 | 机制 | 状态 |
+|---|---|---|
+| **主方向：无义突变 readthrough** | ataluren (Translarna/PTC124) 促进核糖体 readthrough PTC → 恢复部分 BUBR1 | 待验证 |
+| 备选 | amlexanox（NMD 抑制+readthrough）、氨基糖苷类（G418/gentamicin，毒性大仅讨论） | 待验证 |
+| **排除** | 促进增殖/抑制检查点的药物（MVA 患者癌症易感，反效果风险） | 已排除 |
+
+**关键风险（必须在报告里如实写）**：
+- readthrough 效率通常只有 10-25%
+- 截断位点在 737/1050 aa —— 恢复的蛋白量能否挽救 SAC 功能是开放问题
+- BUBR1 是大蛋白，readthrough 后蛋白是否折叠/定位正常未知
+- missense allele (p.Asn1002Lys) 不是 PTC，readthrough 药物对它无效——最多只救一半基因剂量
+
+### 9.4 工作流
+
+1. **文献调研**：MVA/BUB1B/BUBR1 + NMD + readthrough 药物 + 非整倍体耐受机制（PubMed/Europe PMC API）
+2. **药物数据库**：DGIdb、Open Targets、ChEMBL 查 BUB1B 相关药物（公开 API = Processor，合规）
+3. **机制论证**：LoF 机制 → 药物如何干预 → 预期效果 → 局限性（评委最看重 Scientific Rigor）
+4. **报告**：用 `static/templates/methods_description_form.xlsx` 的结构写 MD
+5. **repo**：补 Track 2 分析脚本（drug-gene 查询、文献检索脚本）
+
+### 9.5 Track 2 隐私边界（同 Track 1）
+
+- **不需要再碰原始基因组数据** —— Track 2 只用变异结论（findings，可保留）+ 公共知识
+- 药物数据库/文献 API 全是公开查询工具 = Processor
+- 对话里可以讨论：变异机制、药物候选、文献结论
+- 不讨论：基因组级数据、其他变异坐标表
+
 - [x] HF 账号已获批数据集访问权限。
 - [x] 本地资源：用户**有自己的服务器**，能跑 pipeline。
       ⚠️ **服务器上有其他项目——操作时必须小心，不得扰乱既有项目。**
